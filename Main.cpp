@@ -10,12 +10,12 @@
 int main()
 {
 	map<string,Prenotazione> Elenco;
-	GestioneRisorse materie (30, 70, 100, 60, 30);
-	materie.set_prezzi(4.0, 4.0, 2.0);
+	GestioneRisorse materie (100, 100, 100, 60, 30);
+	materie.set_prezzi(4.0, 4.0, 2.0, 10.0, 12.0);
 	char uscita = 'u';
 	cout << "Benvenuto nel menu della prenotazione, se desidera aggiumgere una prenotazione, prema a\
 	, se desidera modificare una prenotazione, prema m, se desidera cancellare una prenotazione, prema\
-	c, se desidera invece vedere l'elenco delle prenotazioni premere e, altrimenti prema u per uscire dal menu"<<endl;
+	c, se desidera visualizzaere le risorse rimanenti o il prezzo delle risorse, prema r, se desidera invece vedere l'elenco delle prenotazioni premere e, altrimenti prema u per uscire dal menu"<<endl;
 	char menu;
 	cin >> menu;
 	do{
@@ -29,31 +29,87 @@ int main()
 				PaoloPre.set_noPersona(Paolo);
 				PaoloPre.serviziScelti(materie);
 				PaoloPre.set_prezzoTot(materie);
-				Elenco[Paolo.nome]=PaoloPre;
+				Elenco[Paolo.cognome]=PaoloPre;
 			}
 			break;
-
 				
-			case 'm':
-				PaoloPre.get_Data();
-				PaoloPre.get_prenot();
-				PaoloPre.mod_servizi();
-				break;
+			case 'm':{
+				if(Elenco.empty()) {cout << "non ci sono prenotazione" << endl;} else {
+				cout << endl;
+				cout << endl;
+				cout << "Selezionare il cognome della prenotazione che si vuole modificare ";
+				string cog;
+				cin >> cog;
+				Elenco.find(cog)->second.mod_servizi();
+				}
+			}
+			break;
 				
-			case 'c':
-				
-				
-				break;
+			case 'c':{
+				if(Elenco.empty()) {cout << "non ci sono prenotazione" << endl;} else {
+				cout << endl;
+				cout << endl;
+				cout << "Selezionare il cognome della prenotazione che si vuole cancellare ";
+				string cog;
+				cin >> cog;
+				Elenco.erase(cog);
+				}
+			}
+			break;
 			
 			case 'e':
+			{
+				cout << endl;
+				cout << endl;
+				for(map<string,Prenotazione>::iterator it=Elenco.begin(); it!=Elenco.end(); ++it)
+				{
+					cout << it->first;
+					cout << " - ";
+					it->second.get_Data();
+					it->second.get_prenot();
+				}
+				if(Elenco.empty()) {cout << "non ci sono prenotazione" << endl;};
+			}
+			break;
+			
+			case 'r':
+				char visRisorse;
+				while(visRisorse != 'u'){
+				cout << " Selezionare cosa desidera vedere: il prezzo delle risorse(p) oppure le rimanenze delle risorse (r). Se desidera invece tornare al menu, prema u" << endl;
+				cin >> visRisorse;
+					switch(visRisorse) {
+						case 'p':
+							materie.get_prezzi();
+							cout << endl;
+						break;
+						
+						case 'r':
+							materie.get_risorse();
+							cout << endl;
+						break;
+						
+						case 'u':
+							cout << " Ottimo, continui a navigare nel menu " << endl;
+							cout << endl;
+						break;
+						
+						default:
+							cout << "Carattere non riconosciuto, ripetere prego: ";
+					}
+				}
 				
-				break;
+			break;
 				
 			case 'u':
+			{
 				cout << "Arrivederci!" <<endl;
-				break;
+			}
+			break;
+			
+			default:
+				cout << "Carattere non riconosciuto, ripetere prego" << endl;
 		}
-	cout << "Desidera continuare? E desidera aggiumgere una prenotazione, prema a, se desidera modificare una prenotazione, prema m, se desidera cancellare una prenotazione, prema\
+	cout << "Desidera continuare? E desidera aggiungere una prenotazione, prema a, se desidera modificare una prenotazione, prema m, se desidera cancellare una prenotazione, prema\
 	c, se desidera invece vedere l'elenco delle prenotazioni premere e, altrimenti prema u per uscire dal menu" << endl;
 	cin >> menu;
 	if (menu == uscita){
@@ -62,3 +118,4 @@ int main()
 	}while(uscita!=menu);
 }
 
+//fatto da Emanuele Scarpati (DES) & Antonio Esposito (Æ)

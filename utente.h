@@ -15,7 +15,7 @@ class Utente {
 	public:
 		string nome;
 		string cognome;
-		int numerotel;
+		long long int numerotel;
 		
 	public:
 		

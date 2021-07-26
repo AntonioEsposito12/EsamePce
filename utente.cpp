@@ -15,7 +15,7 @@ Cliente::Cliente(){
 
 void Utente::set_dati(){
 	string a, b;
-	int i;
+	long long int i;
 	cout << "inserire nome per la prenotazione: ";
 	cin >> a;
 	nome = a;
@@ -24,6 +24,11 @@ void Utente::set_dati(){
 	cognome = b;
 	cout << "inserire numero cell. per la prenotazione: ";
 	cin >> i;
+	while (!(cin >> i)) {
+		cin.clear();
+		cin.ignore(10000, '\n');
+		cout << "Inserisca un numero di telefono per davvero, grazie" << endl;
+	}
 	numerotel = i;
 };
 	

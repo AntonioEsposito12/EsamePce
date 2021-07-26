@@ -4,43 +4,79 @@
 
 using namespace std;
 
+void GestioneRisorse::modPiscina(int pis){
+	do{
+		if(pis <= postiPiscina) {
+			postiPiscina = postiPiscina-pis;
+			cout << "n. posti per la piscina rimanenti: " << postiPiscina << endl;
+		} else if (pis > postiPiscina) {
+			cout << pis << " lettini non disponibili, sono invece disponibili: " << postiPiscina << " lettini" << endl;
+		}
+	}while(pis > postiPiscina);
+};
+
+void GestioneRisorse::modRistorante(int ris){
+	do{
+		if(ris <= postiRistorante) {
+			postiRistorante = postiRistorante-ris;
+			cout << "n. posti per il ristorante rimanenti: " << postiRistorante << endl;
+		} else if (ris > postiRistorante) {
+			cout << ris << " lettini non disponibili, sono invece disponibili: " << postiRistorante << " lettini" << endl;
+		}
+	}while(ris > postiRistorante);
+};
+
 void GestioneRisorse::modLettini(int let){
+	do{
 		if(let <= lettiniRim) {
 			lettiniRim = lettiniRim-let;
+			cout << "n. Lettini rimanenti: " << lettiniRim << endl;
 		} else if (let > lettiniRim) {
 			cout << let << " lettini non disponibili, sono invece disponibili: " << lettiniRim << " lettini" << endl;
 		}
-		cout << "n. Lettini rimanenti: " << lettiniRim << endl;
+	}while(let > lettiniRim);
 };
 
 void GestioneRisorse::modSdraio(int sdr){
+	do{
 		if(sdr <= sdraioRim) {
 			sdraioRim = sdraioRim-sdr;
-		} else if (sdr > sdraioRim) {
+			cout << "n. Sdraio rimanenti: " << sdraioRim << endl;
+			} else if (sdr > sdraioRim) {
 			cout << sdr << " sdraio non disponibili, sono invece disponibili: " << sdraioRim << " sdraio";
 		}
-		cout << "n. Sdraio rimanenti: " << sdraioRim << endl;
-
+	}while(sdr > sdraioRim);
 };
 
 void GestioneRisorse::modOmbrelloni(int omb){
+	do{
 		if(omb <= ombrelloniRim) {
 			ombrelloniRim = ombrelloniRim-omb;
-		} else if (omb > ombrelloniRim) {
+			cout << "n. Ombrelloni rimanenti: " << ombrelloniRim << endl;
+			} else if (omb > ombrelloniRim) {
 			cout << omb << " ombrelloni non disponibili, sono invece disponibili: " << ombrelloniRim << " ombrelloni";
 		}
-		cout << "n. Ombrelloni rimanenti: " << ombrelloniRim << endl;
-
+	}while(omb > ombrelloniRim);
 };
 
-void GestioneRisorse::set_prezzi(float e, float r, float t){
-	prezziLet  = e;
-	prezziOmbr = r;
-	prezziSdr  = t;
+void GestioneRisorse::set_prezzi(float o, float l, float s, float r, float p){
+	prezziLet  = l;
+	prezziOmbr = o;
+	prezziSdr  = s;
+	prezziRis = r;
+	prezziPis = p;
 };
 
 void GestioneRisorse::get_prezzi(){
-	cout <<"prezzo per il lettino: "<< prezziLet <<" prezzo per l'ombrellone"<< " " << prezziOmbr << " prezzo per la sdraio " << prezziSdr << " ";
+	cout <<"prezzo per il lettino: "<< prezziLet <<endl<<" prezzo per l'ombrellone " << prezziOmbr <<endl<< " prezzo per la sdraio ";
+	cout << prezziSdr <<endl<< " prezzo per il Ristorante " << prezziRis <<endl<< " prezzo per la Piscina " << prezziPis << endl;
+};
+
+void GestioneRisorse::get_risorse(){
+	cout << "Sono rimasti:" << endl << "Ombrelloni -> " << ombrelloniRim << endl;
+	cout << "Lettini -> " << lettiniRim << endl << "Sdraio -> " << sdraioRim << endl;
+	cout << "Posti per il Ristorante -> " << postiRistorante << endl;
+	cout << "Posti per la Piscina -> " << postiPiscina << endl;
 };
 
 GestioneRisorse::GestioneRisorse(int a, int b, int c, int e, int w) {

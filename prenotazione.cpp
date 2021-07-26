@@ -26,10 +26,11 @@ void Prenotazione::set_noPersona(Cliente h) {
 };
 
 void Prenotazione::serviziScelti(GestioneRisorse &ris) { //indica quali servizi il cliente decide di scegliere
-	cout << "Scegliere la data di prenotazione:" << endl;
+	cout << "Scegliere la data di prenotazione" << endl;
+	cout << endl;
 	this->set_dataPr(); //per usare il metodo bisogna usare this
 	int p;
-	cout << "Inserire il numero di persona: ";
+	cout << "Inserire il numero di persone: ";
 	cin >> p;
 	nuPersone=p;
 	char y;
@@ -39,10 +40,11 @@ void Prenotazione::serviziScelti(GestioneRisorse &ris) { //indica quali servizi 
 		cout << endl;
 		if (y=='y') {
 			piscina=true;
+			ris.modPiscina(this->nuPersone);
 			} else if (y == 'n') {
 				piscina = false;
 			} else {
-				cout << " carattere non riconosciuto, ripetere l'immissione ";
+				cout << endl << " carattere non riconosciuto, ripetere l'immissione ";
 			}
 		}while(y!='y' && y!='n');
 	cout << "Si vuole usufruire del ristorante? Abbiamo: " << ris.postiRistorante << " posti disponibili premere, y se desidera prenotare anche il ristorante o n se non desidera prenotare il ristorante ";
@@ -51,10 +53,11 @@ void Prenotazione::serviziScelti(GestioneRisorse &ris) { //indica quali servizi 
 		cout << endl;
 		if (y=='y') {
 			ristorante=true;
+			ris.modRistorante(this->nuPersone);
 			} else if (y == 'n') {
 				ristorante = false;
 			} else {
-				cout << " carattere non riconosciuto, ripetere l'immissione ";
+				cout << endl << " carattere non riconosciuto, ripetere l'immissione ";
 			}
 		}while(y!='y' && y!='n');
 	int f;
@@ -84,26 +87,43 @@ void Prenotazione::set_dataPr(){
 
 	do{
 		cout << "Inserire il giorno: "<<endl;
-		cin >> g;    
-  }
-  while ( !(g >0 && g < 32));        
-  giorno = g;
+		cin >> g; 
+		while (!(cin >> g)) {
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "Inserisca un giorno per davvero, grazie" << endl;
+			}
+		}
+		while ( !(g >0 && g < 32));        
+		giorno = g;
 
 	do{
 		do{
-			cout << "Inserire il mese: "<<endl;
-			cin >> m;    
-			}  
-			while( (m == 2 && giorno > 28) ||  ((m==4 || m==6 ||m==9 || m==11) && giorno > 30));
-			}
-			while ( !(m >0 && m < 13));        
-			mese = m;
+			cout << "Inserire il mese: " << endl;
+			cin >> m;
+			while (!(cin >> m)) {
+				cin.clear();
+				cin.ignore(10000, '\n');
+				cout << "Inserisca un mese per davvero, grazie" << endl;
+				}
+				
+			}while((m == 2 && giorno > 28) ||  ((m==4 || m==6 ||m==9 || m==11) && giorno > 30));
+			
+		}while ( !(m >0 && m < 13));        
+		mese = m;
+		
 	do{
 		cout << "Inserire l'anno: "<<endl;
-		cin >> a;    
-		}
-		while ( !(a >=2021 && a < 2050));        
-		anno = a;
+		cin >> a;
+		while (!(cin >> a)) {
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "Inserisca un anno per davvero, grazie" << endl;
+			}
+			
+		}while ( !(a >=2021 && a < 2050));        
+		anno = a;	
+		
 };
 
 void Prenotazione::get_Data(){
@@ -123,6 +143,8 @@ void Prenotazione::set_prezzoTot(GestioneRisorse &pre) {
 	prezzoTot = pre.prezziLet*nuPersone;
 	prezzoTot = prezzoTot+(pre.prezziSdr*nuPersone);
 	prezzoTot = prezzoTot+(pre.prezziOmbr*nuPersone);
+	prezzoTot = prezzoTot+(pre.prezziPis*nuPersone);
+	prezzoTot = prezzoTot+(pre.prezziRis*nuPersone);
 };
 
 void Prenotazione::get_prenot(){
@@ -144,6 +166,7 @@ void Prenotazione::get_prenot(){
 	cout << "nome della prenotazione: "; noPersona.get_dati(); cout << endl;
 };
 void Prenotazione::mod_servizi() {
+	if(prenEff==true){
 	char more = 'y';
 	while(more == 'y'){
 		cout << "Scegliere cosa si vuole modificare: n.Persone(p), n.Lettini(l), n.Ombrelloni(o), n.Sdraio(s), ristorante(r), piscina(i), data(d)"<<endl;
@@ -201,10 +224,14 @@ void Prenotazione::mod_servizi() {
 			case 'd':
 				this->set_dataPr();
 				break;
+			
+			cout << "Se si desidera modificare altro, prema y altrimenti prema un altro pulsante "<<endl;
+			cin >> more;
+			}
 		}
-		cout << "Se si desidera modificare altro, prema y altrimenti prema un altro pulsante"<<endl;
-		cin >> more;
+	} else {
+		cout << " La prenotazione non esiste ";
 	}
-};
+}
 
 
