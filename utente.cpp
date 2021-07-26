@@ -23,17 +23,16 @@ void Utente::set_dati(){
 	cin >> b;	
 	cognome = b;
 	cout << "inserire numero cell. per la prenotazione: ";
-	cin >> i;
-	while (!(cin >> i)) {
+	while (!(cin >> i)) { //metodo per evitare che vada in crash se inserito un char
 		cin.clear();
-		cin.ignore(10000, '\n');
+		cin.ignore(10000000000, '\n');
 		cout << "Inserisca un numero di telefono per davvero, grazie" << endl;
 	}
 	numerotel = i;
 };
 	
 void Utente::get_dati(){
-	cout <<"nome: "<< nome << " " <<"cognome: "<< cognome << " " <<"numero telefono: "<< numerotel << " ";
+	cout <<"nome: "<< nome << " cognome: "<< cognome << " numero telefono: "<< numerotel << endl;
 };
 
 void Cliente::set_tipo(string f) {

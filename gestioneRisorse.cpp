@@ -4,18 +4,18 @@
 
 using namespace std;
 
-void GestioneRisorse::modPiscina(int pis){
+void GestioneRisorse::modPiscina(int pis){ //modifica il numero di posti per la piscina
 	do{
 		if(pis <= postiPiscina) {
 			postiPiscina = postiPiscina-pis;
-			cout << "n. posti per la piscina rimanenti: " << postiPiscina << endl;
+			cout << " n. posti per la piscina rimanenti: " << postiPiscina << endl;
 		} else if (pis > postiPiscina) {
 			cout << pis << " lettini non disponibili, sono invece disponibili: " << postiPiscina << " lettini" << endl;
 		}
 	}while(pis > postiPiscina);
 };
 
-void GestioneRisorse::modRistorante(int ris){
+void GestioneRisorse::modRistorante(int ris){ //modifica il numero di posti per il ristorante
 	do{
 		if(ris <= postiRistorante) {
 			postiRistorante = postiRistorante-ris;
@@ -26,7 +26,7 @@ void GestioneRisorse::modRistorante(int ris){
 	}while(ris > postiRistorante);
 };
 
-void GestioneRisorse::modLettini(int let){
+void GestioneRisorse::modLettini(int let){ //modifica il numero di lettini
 	do{
 		if(let <= lettiniRim) {
 			lettiniRim = lettiniRim-let;
@@ -37,7 +37,7 @@ void GestioneRisorse::modLettini(int let){
 	}while(let > lettiniRim);
 };
 
-void GestioneRisorse::modSdraio(int sdr){
+void GestioneRisorse::modSdraio(int sdr){ //modifica il numero di sdraio
 	do{
 		if(sdr <= sdraioRim) {
 			sdraioRim = sdraioRim-sdr;
@@ -48,7 +48,7 @@ void GestioneRisorse::modSdraio(int sdr){
 	}while(sdr > sdraioRim);
 };
 
-void GestioneRisorse::modOmbrelloni(int omb){
+void GestioneRisorse::modOmbrelloni(int omb){ //modifica il numero di ombrellini
 	do{
 		if(omb <= ombrelloniRim) {
 			ombrelloniRim = ombrelloniRim-omb;
@@ -59,7 +59,7 @@ void GestioneRisorse::modOmbrelloni(int omb){
 	}while(omb > ombrelloniRim);
 };
 
-void GestioneRisorse::set_prezzi(float o, float l, float s, float r, float p){
+void GestioneRisorse::set_prezzi(float o, float l, float s, float r, float p){ //setta i prezzi
 	prezziLet  = l;
 	prezziOmbr = o;
 	prezziSdr  = s;
@@ -79,7 +79,7 @@ void GestioneRisorse::get_risorse(){
 	cout << "Posti per la Piscina -> " << postiPiscina << endl;
 };
 
-GestioneRisorse::GestioneRisorse(int a, int b, int c, int e, int w) {
+GestioneRisorse::GestioneRisorse(int a, int b, int c, int e, int w) { //costruttore
 	lettiniRim = a;
 	sdraioRim = b;
 	ombrelloniRim = c;

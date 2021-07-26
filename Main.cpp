@@ -6,15 +6,13 @@
 #include <map>
 
 
-
 int main()
 {
 	map<string,Prenotazione> Elenco;
 	GestioneRisorse materie (100, 100, 100, 60, 30);
 	materie.set_prezzi(4.0, 4.0, 2.0, 10.0, 12.0);
 	char uscita = 'u';
-	cout << "Benvenuto nel menu della prenotazione, se desidera aggiumgere una prenotazione, prema a\
-	, se desidera modificare una prenotazione, prema m, se desidera cancellare una prenotazione, prema\
+	cout << "Benvenuto nel menu della prenotazione, se desidera aggiumgere una prenotazione, prema a, se desidera modificare una prenotazione, prema m, se desidera cancellare una prenotazione, prema\
 	c, se desidera visualizzaere le risorse rimanenti o il prezzo delle risorse, prema r, se desidera invece vedere l'elenco delle prenotazioni premere e, altrimenti prema u per uscire dal menu"<<endl;
 	char menu;
 	cin >> menu;
@@ -34,25 +32,25 @@ int main()
 			break;
 				
 			case 'm':{
-				if(Elenco.empty()) {cout << "non ci sono prenotazione" << endl;} else {
+				if(Elenco.empty()) {cout << "non ci sono prenotazioni" << endl;} else {
 				cout << endl;
 				cout << endl;
 				cout << "Selezionare il cognome della prenotazione che si vuole modificare ";
 				string cog;
 				cin >> cog;
-				Elenco.find(cog)->second.mod_servizi();
+				Elenco.find(cog)->second.mod_servizi(); //trova l'elemento
 				}
 			}
 			break;
 				
 			case 'c':{
-				if(Elenco.empty()) {cout << "non ci sono prenotazione" << endl;} else {
+				if(Elenco.empty()) {cout << "non ci sono prenotazioni" << endl;} else {
 				cout << endl;
 				cout << endl;
 				cout << "Selezionare il cognome della prenotazione che si vuole cancellare ";
 				string cog;
 				cin >> cog;
-				Elenco.erase(cog);
+				Elenco.erase(cog); //cancella elemento dal map
 				}
 			}
 			break;
@@ -63,9 +61,9 @@ int main()
 				cout << endl;
 				for(map<string,Prenotazione>::iterator it=Elenco.begin(); it!=Elenco.end(); ++it)
 				{
-					cout << it->first;
+					cout << it->first; //first corrisponde alla chiave di map
 					cout << " - ";
-					it->second.get_Data();
+					it->second.get_Data(); //second corrisponde al valore di map
 					it->second.get_prenot();
 				}
 				if(Elenco.empty()) {cout << "non ci sono prenotazione" << endl;};

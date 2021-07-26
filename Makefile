@@ -16,5 +16,5 @@ Main.o: Main.cpp utente.h prenotazione.h gestioneRisorse.h
 	 g++ -c Main.cpp
 clean:
 	rm -f *.o
-	rm -f ./start
+	rm -f ./Stabilimento_Balneare
 	rm -f *~

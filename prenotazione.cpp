@@ -87,11 +87,10 @@ void Prenotazione::set_dataPr(){
 
 	do{
 		cout << "Inserire il giorno: "<<endl;
-		cin >> g; 
-		while (!(cin >> g)) {
+		while (!(cin >> g)) { //metodo per evitare che vada in crash se inserito un char
 			cin.clear();
 			cin.ignore(10000, '\n');
-			cout << "Inserisca un giorno per davvero, grazie" << endl;
+			cout << "Inserisca un giorno per davvero, grazie" << endl << endl;
 			}
 		}
 		while ( !(g >0 && g < 32));        
@@ -100,11 +99,10 @@ void Prenotazione::set_dataPr(){
 	do{
 		do{
 			cout << "Inserire il mese: " << endl;
-			cin >> m;
-			while (!(cin >> m)) {
+			while (!(cin >> m)) { //metodo per evitare che vada in crash se inserito un char
 				cin.clear();
 				cin.ignore(10000, '\n');
-				cout << "Inserisca un mese per davvero, grazie" << endl;
+				cout << "Inserisca un mese per davvero, grazie" << endl << endl;
 				}
 				
 			}while((m == 2 && giorno > 28) ||  ((m==4 || m==6 ||m==9 || m==11) && giorno > 30));
@@ -114,11 +112,10 @@ void Prenotazione::set_dataPr(){
 		
 	do{
 		cout << "Inserire l'anno: "<<endl;
-		cin >> a;
-		while (!(cin >> a)) {
+		while (!(cin >> a)) { //metodo per evitare che vada in crash se inserito un char
 			cin.clear();
 			cin.ignore(10000, '\n');
-			cout << "Inserisca un anno per davvero, grazie" << endl;
+			cout << "Inserisca un anno per davvero, grazie" << endl << endl;
 			}
 			
 		}while ( !(a >=2021 && a < 2050));        

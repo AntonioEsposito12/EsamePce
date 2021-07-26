@@ -3,32 +3,27 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
-
 
 using namespace std;
 
-class Utente {
-	public:
-
-		
+class Utente { //Classe padre utente
 	public:
 		string nome;
 		string cognome;
-		long long int numerotel;
+		long long int numerotel; //Per poter inserire numeri simil telefonici (dai 3 miliardi in su)
 		
 	public:
 		
 		Utente();
-		void set_dati ();
+		void set_dati (); 
 		void get_dati();
 		
 	};
 	
-class Cliente:public Utente {
+class Cliente:public Utente { //classe figlio utente
 	private:
-		string tipo;
-		int numerop;
+		string tipo; // tipo di cliente
+		int numerop; //numero persone per la prenotazione
 		
 	public:
 		Cliente();
